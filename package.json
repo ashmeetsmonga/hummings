@@ -1,0 +1,22 @@
+{
+  "name": "hummings",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.ts",
+  "scripts": {
+    "build": "rm -rf build && tsc",
+    "start": "node build/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "joi": "^17.9.2",
+    "mongoose": "^7.3.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "typescript": "^5.1.3"
+  }
+}
