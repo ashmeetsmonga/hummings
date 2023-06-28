@@ -6,6 +6,9 @@ export const registerUserService = async (
 	email: string,
 	password: string
 ): Promise<Document<IUserModel>> => {
-	const user = await User.create({ username, email, password });
+	let user = await User.findOne({ email });
+	if (user) throw new Error("Email already exists");
+
+	user = await User.create({ username, email, password });
 	return user;
 };
