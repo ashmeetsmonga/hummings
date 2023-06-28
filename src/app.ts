@@ -1,11 +1,15 @@
 import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/config";
+import userRouter from "./routes/userRoutes";
 
 dotenv.config();
 const app = express();
 
 app.use(express.json());
+
+//routes
+app.use("/api", userRouter);
 
 // Health Check
 app.get("/ping", (req, res) => res.status(200).json({ message: "API working..." }));

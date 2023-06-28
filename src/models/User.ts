@@ -12,15 +12,15 @@ export interface IUserModel extends IUser, Document {}
 const UserSchema: Schema = new Schema(
 	{
 		username: {
-			type: string,
+			type: String,
 			required: true,
 		},
 		password: {
-			type: string,
+			type: String,
 			required: true,
 		},
 		email: {
-			type: string,
+			type: String,
 			required: true,
 		},
 	},
