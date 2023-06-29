@@ -4,11 +4,12 @@ import User, { IUserModel } from "../models/User";
 export const registerUserService = async (
 	email: string,
 	password: string
-): Promise<Document<IUserModel>> => {
+): Promise<{ user: string; token: string }> => {
 	let user = await User.findOne({ email });
 	if (user) throw new Error("Email already exists");
 
 	const username = email.split("@")[0];
 	user = await User.create({ username, email, password });
-	return user;
+	const token = user.createJWT();
+	return { user: user.username, token };
 };
