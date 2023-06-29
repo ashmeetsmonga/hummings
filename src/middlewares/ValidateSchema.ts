@@ -16,7 +16,6 @@ export const validateSchema = (schema: ObjectSchema) => {
 export const Schemas = {
 	user: {
 		register: Joi.object<IUser>({
-			username: Joi.string().required(),
 			email: Joi.string().required(),
 			password: Joi.string().required(),
 		}),
