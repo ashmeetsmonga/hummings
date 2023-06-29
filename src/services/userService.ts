@@ -13,3 +13,17 @@ export const registerUserService = async (
 	const token = user.createJWT();
 	return { user: user.username, token };
 };
+
+export const loginUserService = async (
+	email: string,
+	password: string
+): Promise<{ user: string; token: string }> => {
+	let user = await User.findOne({ email });
+	if (!user) throw new Error("Invalid email");
+
+	const isPasswordCorrect = user.checkPassword(password);
+	if (!isPasswordCorrect) throw new Error("Invalid password");
+
+	const token = user.createJWT();
+	return { user: user.username, token };
+};

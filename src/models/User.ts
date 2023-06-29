@@ -11,6 +11,7 @@ export interface IUser {
 
 interface IUserMethods {
 	createJWT(): string;
+	checkPassword(password: string): boolean;
 }
 
 export interface IUserModel extends IUser, IUserMethods, Document {}
@@ -44,6 +45,11 @@ UserSchema.methods.createJWT = function () {
 		expiresIn: "30d",
 	});
 	return token;
+};
+
+UserSchema.methods.checkPassword = function (inputPassword: string) {
+	const isPasswordCorrect = bcrypt.compareSync(inputPassword, this.password);
+	return isPasswordCorrect;
 };
 
 export default mongoose.model<IUserModel>("User", UserSchema);
